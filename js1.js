@@ -1,3 +1,4 @@
+
 var canvas = document.getElementById('canvas');
 //拿到在html中id为canvas的元素并传给设置的新变量canvas
 var context = canvas.getContext('2d');
