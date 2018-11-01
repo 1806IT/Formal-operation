@@ -1,37 +1,90 @@
 body{
-    margin: 0;
+    margin: 0px;
+}
+*{
+    margin: 0;padding: 0;
+}
+html{
+
+}
+ol,ul{
+    list-style: none;
+}
+.icon {
+   width: 1em; height: 1em;
+   vertical-align: -0.15em;
+   fill: currentColor;
+   overflow: hidden;
 }
 
-
 #canvas{
-    background: grey;
+    background: white;
     display:block;
 }
 
-/*为自己的程序
-button#rubber{
-    position: fixed;为什么不写这句话就消失了？
-    top:20px;
-    left: 30px;
-}
-button#pen{
-    position: fixed;
-    top:20px;
-    left: 70px;
-    margin-left:80px;
-}
-*/
 .actions{
     position: fixed;
-    top: 0;
-    left: 0;    
+    top: 10px;
+    left: 10px;    
 }
-.actions > #pen{
-    display: none;
+
+.actions svg{
+    width: 1.5em;
+    height: 1.5em;
+    margin: 20px 20px;
+    transition: all 0.3s;/*动画时间0.3s*/
 }
-.actions.x > #pen{
-    display: inline-block;
+.actions svg.active{
+    fill: red;
+    transform: scale(1.2);/*放大1.2倍*/
 }
-.actions.x > #rubber{
-    display: none;
+ol.colors1,
+ol.colors2{
+    position: fixed;
+}
+.colors1{
+    top: 60px;
+    left: 10px;
+}
+            
+.colors1 li.pink{background: pink;}
+.colors1 li.orange{background: orange;}
+.colors1 li.red{background: red;}
+.colors2{
+    top: 60px;
+    left: 40px;
+}
+.colors2 li.green{background: green;}
+.colors2 li.blue{background: blue;}
+.colors2 li.black{background: black;}
+
+li{
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    margin: 4px;
+    transition: all 0.3s;
+}
+li.active{
+    box-shadow: 0 0 4px rgba(0,0,0,0.95);
+    transform: scale(1.2);
+}
+.size{
+    position:fixed;
+    right:20px;
+    top: 10px;
+}
+.size >li{
+    margin: 20px 0;
+
+}
+.size > .thin{
+    height: 0;
+    width: 30px;
+    border-top: 3px solid black;
+}
+.size > .thick{
+    height: 0;
+    width: 30px;
+    border-top: 6px solid black;
 }

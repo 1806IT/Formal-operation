@@ -2,20 +2,107 @@ var canvas = document.getElementById('canvas');
 //拿到在html中id为canvas的元素并传给设置的新变量canvas
 var context = canvas.getContext('2d');
 //将canvas的上下文的2d参数传给context变量
+var widthl=4;
 
 自动宽高函数(canvas)
 监听用户函数(canvas)
 
 
-var rubberEnabled = false;
-rubber.onclick = function () {
-    rubberEnabled = true
-    action.className = 'actions x'
+var eraserEnabled = false;
+eraser.onclick = function () {
+    eraserEnabled = true  
+    eraser.classList.add('active') //添加eraser的类名属性,驼峰命名法，指令中间要大写
+    pen.classList.remove('active')//移除pen的类名属性
 }
+
 pen.onclick = function () {
-    rubberEnabled = false
-    action.className = 'actions'
+    eraserEnabled = false
+    pen.classList.add('active')
+    eraser.classList.remove('active')
+
 }
+//mdn搜的
+clear.onclick =function(){
+    context.clearRect(0,0,canvas.width,canvas.height);
+}
+
+//google搜的
+save.onclick = function () {
+    var url = canvas.toDataURL("image/png");
+    var a = document.createElement('a')  
+    document.body.appendChild(a)
+    a.href = url
+    a.download = '我的画'
+    a.target = '_blank'
+    a.click()
+}
+
+red.onclick= function(){
+    context.strokeStyle = 'red'
+    blue.classList.remove('active')
+    red.classList.add('active')
+    pink.classList.remove('active')
+    black.classList.remove('active')
+    green.classList.remove('active')
+    orange.classList.remove('active')  
+} 
+blue.onclick = function () {
+    context.strokeStyle = 'blue' 
+    blue.classList.add('active')
+    red.classList.remove('active')
+    pink.classList.remove('active') 
+    black.classList.remove('active') 
+    green.classList.remove('active') 
+    orange.classList.remove('active')    
+} 
+black.onclick = function () {
+    context.strokeStyle = 'black'
+    blue.classList.remove('active')
+    red.classList.remove('active')
+    pink.classList.remove('active')
+    black.classList.add('active')
+    green.classList.remove('active')
+    orange.classList.remove('active')  
+} 
+pink.onclick = function () {
+    context.strokeStyle = 'pink'
+    blue.classList.remove('active')
+    red.classList.remove('active')
+    pink.classList.add('active')
+    black.classList.remove('active')
+    green.classList.remove('active')
+    orange.classList.remove('active')  
+} 
+green.onclick = function () {
+    context.strokeStyle = 'green'
+    blue.classList.remove('active')
+    red.classList.remove('active')
+    pink.classList.remove('active')
+    black.classList.remove('active')
+    green.classList.add('active')
+    orange.classList.remove('active')  
+} 
+orange.onclick = function () {
+    context.strokeStyle = 'orange'
+    blue.classList.remove('active')
+    red.classList.remove('active')
+    pink.classList.remove('active')
+    black.classList.remove('active')
+    green.classList.remove('active')
+    orange.classList.add('active')  
+} 
+thin.onclick=function(){
+    widthl= 4;
+    thin.classList.add('active')
+    thick.classList.remove('active')
+}
+thick.onclick = function () {
+    widthl = 8;
+    thin.classList.remove('active')
+    thick.classList.add('active')
+}
+
+
 
 function 自动宽高函数(canvas) {
     设置宽高()
@@ -33,11 +120,11 @@ function 自动宽高函数(canvas) {
     }
 }
 //划线函数
-function drawLine(x1, y1, x2, y2, widthl) {
+function drawLine(x1, y1, x2, y2) {
     context.beginPath();//新建一条路径，生成之后，图形绘制命令被指向到路径上生成路径。
     context.moveTo(x1, y1)
     context.lineWidth = widthl
-    context.strokeStyle = 'red'//连线的颜色
+    //context.strokeStyle = 'red'//连线的颜色
     context.lineTo(x2, y2)
     context.stroke()//通过线条来绘制图形轮廓。
     context.closePath()//闭合路径之后图形绘制命令又重新指向到上下文中。
@@ -54,7 +141,7 @@ function 监听用户函数(canvas) {
             painting = true;
             var x = a.touches[0].clientX;
             var y = a.touches[0].clientY;
-            if (rubberEnabled) {
+            if (eraserEnabled) {
                 context.clearRect(x - 5, y - 5, 10, 10)
             } else {
                 lastPoint = { x, y }
@@ -67,11 +154,11 @@ function 监听用户函数(canvas) {
                 var y = a.touches[0].clientY;
                 var newPoint = { x, y }
                 //console.log(newPoint)
-                if (rubberEnabled) {
+                if (eraserEnabled) {
                     context.clearRect(x - 5, y - 5, 10, 10)
                 } else {
                     //drawCircle(x, y, 1);仅在设计的时候用，实际划线就好了
-                    drawLine(lastPoint.x, lastPoint.y, newPoint.x, newPoint.y, 2)
+                    drawLine(lastPoint.x, lastPoint.y, newPoint.x, newPoint.y)
                 }
                 lastPoint = newPoint
             } else { return }
@@ -84,7 +171,7 @@ function 监听用户函数(canvas) {
             painting = true;
             var x = a.clientX;
             var y = a.clientY;
-            if (rubberEnabled) {
+            if (eraserEnabled) {
                 context.clearRect(x - 5, y - 5, 10, 10)
             } else {
                 lastPoint = { x, y }
@@ -99,11 +186,11 @@ function 监听用户函数(canvas) {
                 var y = a.clientY;
                 var newPoint = { x, y }
                 //console.log(newPoint)
-                if (rubberEnabled) {
+                if (eraserEnabled) {
                     context.clearRect(x - 5, y - 5, 10, 10)
                 } else {
                     //drawCircle(x, y, 1);仅在设计的时候用，实际划线就好了
-                    drawLine(lastPoint.x, lastPoint.y, newPoint.x, newPoint.y, 2)
+                    drawLine(lastPoint.x, lastPoint.y, newPoint.x, newPoint.y)
                 }
                 lastPoint = newPoint
             } else { return }

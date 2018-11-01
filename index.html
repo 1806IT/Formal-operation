@@ -1,29 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>我的画板</title>
-    
+
     <link rel="stylesheet" href="./style.css">
 </head>
+
 <body>
     <header>
 
     </header>
     <main>
-        
+
         <canvas id="canvas" height=100vh></canvas>
         <div id="action" class="actions">
-        <button id="rubber">橡皮</button>
-        <button id="pen">画笔</button>            
+            <svg id="eraser" class="icon">
+                <use xlink:href="#icon-eraser"></use>
+            </svg>
+            <svg id="pen" class="active icon">
+                <use xlink:href="#icon-pen1"></use>
+            </svg>
+            <svg id="clear" class="icon">
+                <use xlink:href="#icon-clear"></use>
+            </svg>
+            <svg id="save" class="icon">
+                <use xlink:href="#icon-baocun"></use>
+            </svg>
         </div>
+        <ol class="colors1">
+            <li id="pink" class="pink"></li>
+            <li id="orange" class="orange"></li>
+            <li id="red" class="red"></li>
+        </ol>
+        <ol class="colors2">
+            <li id="green" class="green"></li>
+            <li id="blue" class="blue"></li>
+            <li id="black" class="black active"></li>
+        </ol>
+        <ol class="size">
+            <li class="thin active" id="thin"></li>
+            <li class="thick" id="thick"></li>
+        </ol>
 
-        
 
     </main>
     <script src="./js1.js"></script>
-    
+    <script src="//at.alicdn.com/t/font_896949_cs2clevc9uo.js"></script>
 </body>
+
 </html>
